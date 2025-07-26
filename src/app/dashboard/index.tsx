@@ -1,14 +1,11 @@
 // Example: Dashboard page (pages/dashboard/index.tsx)
-import React from 'react';
-import Dashboard from '../../components/Dashboard';
-import Layout from '../../components/Layout';
+import dynamic from "next/dynamic";
+import DashboardClient from "./DashboardClient";
 
 export default function DashboardPage() {
   return (
-    <Layout>
-      <main className="container mx-auto p-4">
-        <Dashboard />
-      </main>
-    </Layout>
+    <main className="container mx-auto p-4">
+      <DashboardClient />
+    </main>
   );
 }

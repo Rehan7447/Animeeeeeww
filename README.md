@@ -1,4 +1,4 @@
-# AnimeHub
+# Animeeeeeww
 
 A full-featured anime discovery platform built with **Next.js + TypeScript**, using **Supabase** for user authentication and database, and **Kitsu API + Algolia** for anime content.
 
