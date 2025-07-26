@@ -2,6 +2,7 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "next/navigation";
 import Image from "next/image";
+import AnimeListButton from "@/components/AnimeListButton";
 
 // Type for anime detail response
 interface KitsuAnimeDetail {
@@ -70,9 +71,9 @@ export default function AnimeDetailPage() {
   const attr = anime.attributes;
 
   return (
-    <div className="max-w-3xl mx-auto bg-white dark:bg-gray-900 rounded-lg shadow-lg overflow-hidden mt-8">
+    <div className="max-w-3xl mx-auto bg-white dark:bg-gray-900 rounded-lg shadow-lg overflow-hidden mt-4 sm:mt-8 px-2 sm:px-4">
       {attr.coverImage?.large && (
-        <div className="relative w-full h-64">
+        <div className="relative w-full h-48 sm:h-64">
           <Image
             src={attr.coverImage.large}
             alt={attr.canonicalTitle}
@@ -82,33 +83,40 @@ export default function AnimeDetailPage() {
           />
         </div>
       )}
-      <div className="p-6 flex flex-col md:flex-row gap-6">
+      <div className="p-3 sm:p-6 flex flex-col md:flex-row gap-4 sm:gap-6">
         {attr.posterImage?.large && (
-          <div className="flex-shrink-0">
+          <div className="flex-shrink-0 mx-auto md:mx-0">
             <Image
               src={attr.posterImage.large}
               alt={attr.canonicalTitle}
-              width={225}
-              height={318}
-              className="rounded shadow-md"
+              width={140}
+              height={200}
+              className="rounded shadow-md w-28 h-40 sm:w-36 sm:h-48 object-cover"
             />
           </div>
         )}
         <div className="flex-1">
-          <h1 className="text-3xl font-bold mb-2">{attr.canonicalTitle}</h1>
-          <div className="mb-2 text-gray-500 dark:text-gray-300">
-            {attr.titles.en && <span>({attr.titles.en}) </span>}
-            <span className="text-xs bg-gray-200 dark:bg-gray-700 px-2 py-1 rounded ml-2">
-              {attr.subtype?.toUpperCase()}
-            </span>
-            <span className="ml-2 text-xs bg-blue-200 dark:bg-blue-700 px-2 py-1 rounded">
-              {attr.status}
-            </span>
+          <h1 className="text-2xl sm:text-3xl font-bold mb-2 break-words">
+            {attr.canonicalTitle}
+          </h1>
+          <AnimeListButton anime={anime} />
+          <div className="mb-2 text-gray-500 dark:text-gray-300 flex flex-wrap gap-2 items-center">
+            {attr.titles.en && <span>({attr.titles.en})</span>}
+            {attr.subtype && (
+              <span className="text-xs bg-gray-200 dark:bg-gray-700 px-2 py-1 rounded">
+                {attr.subtype.toUpperCase()}
+              </span>
+            )}
+            {attr.status && (
+              <span className="text-xs bg-blue-200 dark:bg-blue-700 px-2 py-1 rounded">
+                {attr.status}
+              </span>
+            )}
           </div>
           <div className="mb-4 text-sm text-gray-700 dark:text-gray-200">
             {attr.synopsis || attr.description}
           </div>
-          <div className="flex flex-wrap gap-4 text-sm mb-4">
+          <div className="flex flex-wrap gap-2 text-xs sm:text-sm mb-4">
             {attr.averageRating && (
               <span className="bg-green-100 dark:bg-green-800 px-2 py-1 rounded">
                 Rating: {attr.averageRating}
@@ -140,7 +148,7 @@ export default function AnimeDetailPage() {
             <div className="mb-4">
               <iframe
                 width="100%"
-                height="315"
+                height="200"
                 src={`https://www.youtube.com/embed/${attr.youtubeVideoId}`}
                 title="YouTube video player"
                 frameBorder="0"

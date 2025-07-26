@@ -137,7 +137,7 @@ export default function SearchClient() {
   }
 
   return (
-    <div>
+    <div className="max-w-7xl mx-auto px-2 sm:px-4 py-4">
       <SearchBar
         value={pendingQuery}
         onChange={handleQueryChange}
@@ -180,7 +180,7 @@ export default function SearchClient() {
         {error && <div className="text-red-500">{error}</div>}
         {results.length > 0 && (
           <>
-            <ul className="grid grid-cols-2 md:grid-cols-4 gap-4">
+            <ul className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3 sm:gap-4">
               {results.map((anime) => (
                 <li key={anime.id}>
                   <Link
@@ -194,10 +194,10 @@ export default function SearchClient() {
                           alt={anime.attributes.canonicalTitle}
                           width={225}
                           height={318}
-                          className="w-full h-48 object-cover group-hover:opacity-90 transition-opacity"
+                          className="w-full h-36 sm:h-44 md:h-48 object-cover group-hover:opacity-90 transition-opacity"
                         />
                       )}
-                      <div className="p-3 flex-1 flex flex-col">
+                      <div className="p-2 sm:p-3 flex-1 flex flex-col">
                         <div className="font-semibold text-lg mb-1 line-clamp-2">
                           {anime.attributes.canonicalTitle}
                         </div>
