@@ -72,7 +72,7 @@ export default function FavoriteButton({
         if (error) throw error;
         setIsFavorite(false);
       }
-    } catch (err) {
+    } catch {
       alert("Failed to update favorite status");
     }
     setLoading(false);

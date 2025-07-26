@@ -5,14 +5,14 @@ import { useRouter } from "next/navigation";
 
 export default function ProfileClient() {
   const router = useRouter();
-  const [user, setUser] = useState<any>(null);
+  const [user, setUser] = useState<{ id: string; email: string } | null>(null);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     async function fetchUser() {
       const { data: { session } = { session: null } } = await supabase.auth.getSession();
       if (session && session.user) {
-        setUser(session.user);
+        setUser({ id: session.user.id, email: session.user.email ?? "" });
       } else {
         router.replace("/auth");
       }

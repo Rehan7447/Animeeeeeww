@@ -1,4 +1,4 @@
-import dynamic from "next/dynamic";
+// removed unused dynamic import
 import ProfileClient from "./ProfileClient";
 
 export default function ProfilePage() {

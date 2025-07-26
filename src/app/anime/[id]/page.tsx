@@ -53,9 +53,10 @@ export default function AnimeDetailPage() {
         const res = await fetch(`https://kitsu.app/api/edge/anime/${id}`);
         if (!res.ok) throw new Error("Failed to fetch anime details");
         const data = await res.json();
-        setAnime(data.data);
-      } catch (err: any) {
-        setError(err.message || "Failed to fetch anime details");
+        setAnime(data.data as KitsuAnimeDetail);
+      } catch (err) {
+        if (err instanceof Error) setError(err.message);
+        else setError("Failed to fetch anime details");
       }
       setLoading(false);
     }

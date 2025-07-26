@@ -25,7 +25,7 @@ export default function SearchClient() {
         small?: string;
         medium?: string;
         original?: string;
-        meta?: any;
+        meta?: Record<string, unknown>;
       };
       subtype: string;
     };
@@ -66,7 +66,7 @@ export default function SearchClient() {
           "https://kitsu.io/api/edge/genres?page[limit]=50"
         );
         const data = await res.json();
-        setGenres(data.data.map((g: any) => g.attributes.name));
+        setGenres(data.data.map((g: { attributes: { name: string } }) => g.attributes.name));
       } finally {
         setGenresLoading(false);
       }

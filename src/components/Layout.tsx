@@ -2,7 +2,6 @@ import React from "react";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import Sidebar from "../components/Sidebar";
-import dynamic from "next/dynamic";
 import ThemeToggle from "./ThemeToggle";
 
 export default function Layout({ children }: { children: React.ReactNode }) {
@@ -20,3 +19,4 @@ export default function Layout({ children }: { children: React.ReactNode }) {
     </div>
   );
 }
+// removed unused dynamic import

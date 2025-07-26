@@ -1,5 +1,6 @@
 // Example: Dashboard page (pages/dashboard/index.tsx)
-import dynamic from "next/dynamic";
+// removed unused dynamic import
+// import dynamic from "next/dynamic";
 import DashboardClient from "./DashboardClient";
 
 export default function DashboardPage() {

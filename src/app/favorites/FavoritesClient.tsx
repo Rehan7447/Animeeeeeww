@@ -3,9 +3,9 @@ import React, { useEffect, useState } from "react";
 import { Anime } from "@/types";
 import supabase from "@/lib/supabase";
 import { getFavorites } from "@/lib/favorites";
-import AnimeCard from "@/components/AnimeCard";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
+import Image from "next/image";
 import { AiFillHeart } from "react-icons/ai";
 
 export default function FavoritesClient() {
@@ -21,7 +21,7 @@ export default function FavoritesClient() {
       if (session && session.user) {
         const { data, error } = await getFavorites(session.user.id);
         if (error) setError("Failed to fetch favorites");
-        else setFavorites((data || []).map((fav: any) => fav.anime_data));
+        else setFavorites((data || []).map((fav: { anime_data: Anime }) => fav.anime_data));
       } else {
         router.replace("/auth");
       }
@@ -45,7 +45,7 @@ export default function FavoritesClient() {
               <Link href={`/anime/${anime.id}`} className="block h-full">
                 <div className="bg-gray-100 dark:bg-gray-800 rounded-lg shadow-md overflow-hidden flex flex-col h-full transition-transform group-hover:scale-105">
                   {anime.attributes.posterImage?.medium && (
-                    <img
+                    <Image
                       src={anime.attributes.posterImage.medium}
                       alt={anime.attributes.canonicalTitle}
                       className="w-full h-48 object-cover group-hover:opacity-90 transition-opacity"

@@ -18,12 +18,20 @@ export interface Anime {
       small?: string;
       medium?: string;
       original?: string;
-      meta?: any;
+      meta?: {
+        dimensions?: {
+          [key: string]: {
+            width: number;
+            height: number;
+          };
+        };
+      };
     };
     synopsis?: string;
     description?: string;
     subtype?: string;
-    [key: string]: any;
+    // Allow extra Kitsu attributes, but not 'any'
+    [key: string]: unknown;
   };
 }
 

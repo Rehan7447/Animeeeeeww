@@ -10,3 +10,4 @@ export async function fetchAnimeDetails(animeId: string) {
   if (!res.ok) throw new Error('Failed to fetch anime details');
   return res.json();
 }
+    // Replace all 'any' with explicit types or 'unknown' and add type guards if needed.

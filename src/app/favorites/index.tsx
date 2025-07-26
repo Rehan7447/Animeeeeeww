@@ -1,4 +1,4 @@
-import dynamic from "next/dynamic";
+// removed unused dynamic import
 import FavoritesClient from "./FavoritesClient";
 
 export default function FavoritesPage() {

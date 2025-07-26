@@ -27,8 +27,9 @@ const AuthForm = () => {
         // Redirect to dashboard on successful signup
         router.replace('/dashboard');
       }
-    } catch (err: any) {
-      setError(err.message || 'Authentication failed');
+    } catch (err) {
+      if (err instanceof Error) setError(err.message);
+      else setError('Authentication failed');
     }
     setLoading(false);
   }
