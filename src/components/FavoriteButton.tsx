@@ -8,11 +8,15 @@ import { Anime } from "@/types";
 interface FavoriteButtonProps {
   animeId: string;
   animeData?: Anime;
+  size?: "sm" | "md" | "lg";
+  variant?: "default" | "outline" | "ghost";
 }
 
 export default function FavoriteButton({
   animeId,
   animeData,
+  size = "md",
+  variant = "default"
 }: FavoriteButtonProps) {
   const [isFavorite, setIsFavorite] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -43,10 +47,13 @@ export default function FavoriteButton({
 
   async function handleToggleFavorite(e: React.MouseEvent) {
     e.preventDefault();
+    e.stopPropagation();
+    
     if (!userId) {
       alert("You must be logged in to favorite an anime.");
       return;
     }
+    
     setLoading(true);
     try {
       if (!isFavorite) {
@@ -78,16 +85,32 @@ export default function FavoriteButton({
     setLoading(false);
   }
 
+  // Size classes
+  const sizeClasses = {
+    sm: "text-lg",
+    md: "text-xl",
+    lg: "text-2xl"
+  };
+
+  // Variant classes
+  const variantClasses = {
+    default: "",
+    outline: "border rounded-full p-1",
+    ghost: "bg-transparent hover:bg-gray-100 dark:hover:bg-gray-800 p-1 rounded-full"
+  };
+
   return (
     <button
       onClick={handleToggleFavorite}
       disabled={loading || !userId}
       aria-label={isFavorite ? "Remove from favorites" : "Add to favorites"}
-      className={`text-xl transition-colors ${
-        isFavorite ? "text-red-500" : "text-gray-400 hover:text-red-400"
+      className={`${sizeClasses[size]} ${variantClasses[variant]} transition-all duration-300 ${
+        isFavorite 
+          ? "text-red-500 hover:text-red-600" 
+          : "text-gray-400 hover:text-red-400"
       }`}
     >
-      {isFavorite ? <AiFillHeart /> : <AiOutlineHeart />}
+      {isFavorite ? <AiFillHeart className="fill-current" /> : <AiOutlineHeart />}
     </button>
   );
 }

@@ -1,10 +1,10 @@
-// Example: Auth page (pages/auth/index.tsx)
-import dynamic from "next/dynamic";
+"use client";
+
 import AuthClient from "./AuthClient";
 
 export default function AuthPage() {
   return (
-    <main className="container mx-auto p-4 max-w-md">
+    <main className="w-full bg-gradient-to-br from-muted/20 to-muted/40">
       <AuthClient />
     </main>
   );

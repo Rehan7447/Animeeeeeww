@@ -23,7 +23,10 @@ export default function DashboardClient() {
         // setUser({ id: session.user.id, email: session.user.email ?? "" });
         const { data, error } = await getFavorites(session.user.id);
         if (error) setError("Failed to fetch favorites");
-        else setFavorites((data || []).map((fav: { anime_data: Anime }) => fav.anime_data));
+        else
+          setFavorites(
+            (data || []).map((fav: { anime_data: Anime }) => fav.anime_data)
+          );
       } else {
         router.replace("/auth");
       }

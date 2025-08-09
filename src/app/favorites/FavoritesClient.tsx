@@ -21,7 +21,10 @@ export default function FavoritesClient() {
       if (session && session.user) {
         const { data, error } = await getFavorites(session.user.id);
         if (error) setError("Failed to fetch favorites");
-        else setFavorites((data || []).map((fav: { anime_data: Anime }) => fav.anime_data));
+        else
+          setFavorites(
+            (data || []).map((fav: { anime_data: Anime }) => fav.anime_data)
+          );
       } else {
         router.replace("/auth");
       }

@@ -10,7 +10,8 @@ export default function ProfileClient() {
 
   useEffect(() => {
     async function fetchUser() {
-      const { data: { session } = { session: null } } = await supabase.auth.getSession();
+      const { data: { session } = { session: null } } =
+        await supabase.auth.getSession();
       if (session && session.user) {
         setUser({ id: session.user.id, email: session.user.email ?? "" });
       } else {
