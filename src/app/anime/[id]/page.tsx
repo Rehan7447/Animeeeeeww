@@ -99,7 +99,7 @@ export default function AnimeDetailPage() {
           <h1 className="text-2xl sm:text-3xl font-bold mb-2 break-words">
             {attr.canonicalTitle}
           </h1>
-          <AnimeListButton anime={anime} />
+          <AnimeListButton animeId={id as string} size="sm" />
           <div className="mb-2 text-gray-500 dark:text-gray-300 flex flex-wrap gap-2 items-center">
             {attr.titles.en && <span>({attr.titles.en})</span>}
             {attr.subtype && (

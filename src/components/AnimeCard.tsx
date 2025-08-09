@@ -67,7 +67,7 @@ const AnimeCard = ({
         {showActions && (
           <div className="mt-auto pt-3 flex justify-between items-center">
             <FavoriteButton animeId={id} size="sm" />
-            <AnimeListButton animeId={id} size="sm" />
+            {/* <AnimeListButton animeId={id} size="sm" /> */}
           </div>
         )}
       </div>
