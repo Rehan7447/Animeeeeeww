@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+import React, { Suspense } from "react";
 import AuthForm from "@/components/AuthForm";
 import Link from "next/link";
 
@@ -17,9 +17,11 @@ export default function AuthClient() {
             Track and discover your favorite anime
           </p>
         </div>
-        
-        <AuthForm />
-        
+
+        <Suspense fallback={<div>Loading...</div>}>
+          <AuthForm />
+        </Suspense>
+
         <div className="mt-8 text-center text-sm text-muted-foreground">
           <p>
             By continuing, you agree to our{" "}
